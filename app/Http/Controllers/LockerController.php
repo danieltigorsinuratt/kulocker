@@ -50,7 +50,7 @@ class LockerController extends Controller
 
         $locker_id  = intval($request->input('locker_id', 0));
         $durasi_jam = intval($request->input('durasi_jam', 0));
-        $user_id    = intval(session('user.id', 10));
+        $user_id    = intval(session('user')['id'] ?? 0);
 
         if ($durasi_jam < 1 || $durasi_jam > 3 || $locker_id === 0) {
             return redirect()->route('dashboard')->with('error', 'Durasi atau loker tidak valid.');
@@ -119,7 +119,7 @@ class LockerController extends Controller
     {
         date_default_timezone_set('Asia/Makassar');
         $conn    = DbHelper::connection();
-        $user_id = intval(session('user.id', 10));
+        $user_id = intval(session('user')['id'] ?? 0);
 
         $daftar_tiket = [];
         $query = "SELECT p.id AS pemesanan_id, p.tanggal_selesai, p.kode_akses, l.kode_loker, l.lokasi
@@ -147,7 +147,7 @@ class LockerController extends Controller
     public function selesaiSewa(Request $request)
     {
         $conn        = DbHelper::connection();
-        $user_id     = intval(session('user.id', 10));
+        $user_id     = intval(session('user')['id'] ?? 0);
         $pemesanan_id = intval($request->input('pemesanan_id', 0));
 
         if ($pemesanan_id > 0) {
@@ -309,7 +309,7 @@ class LockerController extends Controller
 
                         if ($update_status_order) {
                             mysqli_query($conn, "UPDATE pemesanan SET status = 'selesai', notifikasi_step = '$next_step' WHERE id = $pemesanan_id");
-                            mysqli_query($conn, "UPDATE lockers SET status = 'rusak' WHERE id = $locker_id");
+                            mysqli_query($conn, "UPDATE lockers SET status = 'tersedia' WHERE id = $locker_id");
                             echo "Loker {$kode_loker} SUDAH HABIS WAKTUNYA. Status diubah menjadi RUSAK & Email Kunci Terkirim.<br>";
                         } else {
                             mysqli_query($conn, "UPDATE pemesanan SET notifikasi_step = '$next_step' WHERE id = $pemesanan_id");

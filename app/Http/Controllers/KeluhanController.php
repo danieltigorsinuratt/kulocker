@@ -18,7 +18,7 @@ class KeluhanController extends Controller
             : $user;
 
         if (!$id_users) {
-            return redirect()->route('login');
+            return redirect()->route('sign-in');
         }
 
         // Ambil data user saat ini untuk auto-fill nama dan email di form
@@ -58,7 +58,7 @@ class KeluhanController extends Controller
             : $user;
 
         if (!$id_users) {
-            return redirect()->route('login');
+            return redirect()->route('sign-in');
         }
 
         $fullName = htmlspecialchars($request->input('fullName'));

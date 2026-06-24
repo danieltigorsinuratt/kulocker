@@ -9,6 +9,11 @@ class PengumumanSeeder extends Seeder
 {
     public function run(): void
     {
+        // Hapus data lama agar tidak duplicate
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('pengumuman')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         DB::table('pengumuman')->insert([
             [
                 'id'         => 1,

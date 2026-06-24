@@ -9,6 +9,11 @@ class LockersSeeder extends Seeder
 {
     public function run(): void
     {
+        // Hapus data lama agar tidak duplicate
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('lockers')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         DB::table('lockers')->insert([
             ['id' => 1, 'kode_loker' => 'A-01', 'lokasi' => 'Gedung A Lt.1', 'ukuran' => 'S', 'status' => 'tersedia', 'created_at' => '2026-06-05 22:52:35', 'is_deleted' => 0],
             ['id' => 2, 'kode_loker' => 'A-02', 'lokasi' => 'Gedung A Lt.1', 'ukuran' => 'S', 'status' => 'tersedia', 'created_at' => '2026-06-05 22:52:35', 'is_deleted' => 0],

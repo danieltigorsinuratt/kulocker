@@ -14,7 +14,7 @@ class PengumumanController extends Controller
         $user = session('user');
 
         if (!$user) {
-            return redirect()->route('login');
+            return redirect()->route('sign-in');
         }
 
         // Filter kategori
