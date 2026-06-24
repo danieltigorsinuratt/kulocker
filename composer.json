@@ -8,6 +8,8 @@
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.8",
+        "symfony/console": "^7.4",
+    "symfony/error-handler": "^7.4",
         "laravel/tinker": "^3.0",
         "phpmailer/phpmailer": "^7.1"
     },
