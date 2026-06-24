@@ -1,0 +1,622 @@
+:root {
+  --bg-main: #f4f5f7;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #000000;
+  --sidebar-active: #fbc531;
+  --topbar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --text-dark: #fbc531;
+  --border-color: #fbc531;
+  --success-color: #2ecc71;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ═══════════════ SIDEBAR (KIRI) ═══════════════ */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-brand img {
+  width: 80px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.sidebar-brand span {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--sidebar-text);
+  letter-spacing: 0.5px;
+}
+
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 20px 20px 10px 20px;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.sidebar-menu li {
+  margin-bottom: 4px;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li.active a {
+  background-color: var(--sidebar-active);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn-logout {
+  color: #fc5c65 !important;
+}
+
+/* ═══════════════ CONTAINER UTAMA (KANAN) ═══════════════ */
+.main-container {
+  width: calc(100% - 260px);
+  margin-left: 260px;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: var(--bg-main);
+}
+
+/* TOPBAR NAVIGASI ATAS */
+.topbar {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 99;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-info {
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #f8f9fa;
+  padding: 6px 20px;
+  border-radius: 8px;
+  color: #0a0b0c;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  background-color: #bb8d8d;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* PANEL AREA ISI KONTEN */
+.content-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+/* LAYOUT GRID KHUSUS HALAMAN DASHBOARD UTAMA */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 25px;
+}
+
+/* CARD PUTIH WADAH KONTEN */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+/* INFO LIST DI DASHBOARD */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.dot-green {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success-color);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.badge-important {
+  background-color: #e53e3e;
+  color: white;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.badge-new {
+  background-color: #2ecc71;
+  color: white;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* PANDUAN TUTORIAL LIST */
+.tutorial-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tutorial-list li {
+  font-size: 14px;
+  color: #000000;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tutorial-list li:last-child {
+  border-bottom: none;
+}
+
+/* ═══════════════ VISUALISASI GRID BOX LOCKER ═══════════════ */
+.locker-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.locker-box {
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  background-color: #ffffff;
+}
+
+.locker-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.box-number {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.box-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666666;
+}
+
+.box-status-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* WARNA KONDISI LOCKER BOX */
+.status-empty {
+  background-color: #f0fff4;
+  color: #38a169;
+  border-color: #c6f6d5;
+}
+.status-empty .box-status-tag {
+  background-color: #c6f6d5;
+}
+
+.status-filled {
+  background-color: #fff5f5;
+  color: #dd6b20;
+  border-color: #fed7d7 #feebc8;
+}
+.status-filled .box-status-tag {
+  background-color: #feebc8;
+}
+
+.status-warning {
+  background-color: #fffaf0;
+  color: #e53e3e;
+  border-color: #fed7d7;
+}
+.status-warning .box-status-tag {
+  background-color: #fed7d7;
+}
+
+/* ═══════════════ STRUKTUR GLOBAL TABEL DATA ═══════════════ */
+.table-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-action-add {
+  background-color: #fbc531;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(251, 197, 49, 0.3);
+}
+
+.btn-action-add:hover {
+  background-color: #e1b12c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(251, 197, 49, 0.4);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.locker-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.locker-table th {
+  background-color: #f8f9fa;
+  color: #000000;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.locker-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #edf2f7;
+  color: #000000;
+}
+
+.locker-table tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+/* BADGE STATUS YANG ADA DI DALAM TABEL */
+.badge-table {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.badge-success {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+.badge-danger {
+  background-color: #fed7d7;
+  color: #744210;
+}
+.badge-warning {
+  background-color: #feebc8;
+  color: #742a2a;
+}
+
+/* TOMBOL EDIT & HAPUS */
+.btn-table-edit {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 12px;
+}
+.btn-table-edit:hover {
+  text-decoration: underline;
+}
+
+.btn-table-delete {
+  color: #e53e3e;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-table-delete:hover {
+  text-decoration: underline;
+}
+
+/* PREVIEW TEXT PESAN AGAR TIDAK OVERFLOW MERUSAK TABEL */
+.msg-preview {
+  display: inline-block;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #4a5568;
+  font-style: italic;
+  vertical-align: middle;
+}
+
+/* FOOTER PALING BAWAH */
+.footer-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+  margin-top: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.footer-card span {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* ═══════════════ FORM ELEMENTS ═══════════════ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--sidebar-active);
+  box-shadow: 0 0 0 3px rgba(251, 197, 49, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ═══════════════ RESPONSIVE DESIGN ═══════════════ */
+@media (max-width: 1200px) {
+  .main-container {
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    padding: 15px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .locker-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-container {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    padding: 10px;
+  }
+
+  .sidebar-brand span {
+    display: none;
+  }
+
+  .content-body {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .topbar {
+    padding: 12px 16px;
+  }
+
+  .locker-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .main-container {
+    width: 100%;
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .locker-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+}
+.btn-status-mini {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease;
+}
+.btn-status-mini:active {
+  transform: scale(0.95);
+}
+.btn-mini-tersedia {
+  background-color: #10b981;
+}
+
+.btn-mini-booking {
+  background-color: #f59e0b;
+}
+
+.btn-mini-dipakai {
+  background-color: #ef4444;
+}
