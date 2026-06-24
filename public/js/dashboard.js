@@ -1,14 +1,7 @@
 /* ============================================================
    KuLocker — Dashboard Awal JS
    ============================================================ */
-//MAPS
-  var map = L.map('maps').setView([-8.586716,116.0933652], 17);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
 
-var marker = L.marker([-8.586716,116.0933652]).addTo(map);
 /* ── SCROLL REVEAL ANIMATION ──────────────────────────────── */
 (function () {
   const reveals = document.querySelectorAll('.reveal');
@@ -64,28 +57,53 @@ document.addEventListener('click', () => {
   const mapEl = document.getElementById('maps');
   if (!mapEl) return;
 
-  const map = L.map('maps').setView([-8.5832, 116.1212], 15);
+  const defaultLat = -8.586716;
+  const defaultLng = 116.0933652;
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
-    maxZoom: 19
+  const map = L.map('maps').setView([defaultLat, defaultLng], 17);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
   }).addTo(map);
+
+  // Marker lokasi default
+  L.marker([defaultLat, defaultLng])
+    .addTo(map)
+    .bindPopup('Lokasi KuLocker');
 
   // Lokasi user
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const { latitude, longitude } = pos.coords;
-      L.marker([latitude, longitude], {
-        icon: L.divIcon({
-          className: '',
-          html: `<div style="width:14px;height:14px;border-radius:50%;background:#378add;border:3px solid #fff;box-shadow:0 0 0 4px rgba(55,138,221,0.25);"></div>`,
-          iconSize: [14, 14], iconAnchor: [7, 7]
-        })
-      }).addTo(map).bindPopup('Lokasi kamu').openPopup();
-      map.setView([latitude, longitude], 16);
-    });
-  }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
 
-  
-}
-)();
+        L.marker([latitude, longitude], {
+          icon: L.divIcon({
+            className: '',
+            html: `
+              <div style="
+                width:14px;
+                height:14px;
+                border-radius:50%;
+                background:#378add;
+                border:3px solid #fff;
+                box-shadow:0 0 0 4px rgba(55,138,221,0.25);
+              "></div>
+            `,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+          })
+        })
+        .addTo(map)
+        .bindPopup('Lokasi kamu');
+
+        // Fokus ke lokasi user
+        map.setView([latitude, longitude], 16);
+      },
+      (err) => {
+        console.log('Geolocation gagal:', err);
+      }
+    );
+  }
+})();
