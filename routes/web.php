@@ -33,7 +33,7 @@ Route::post('/reset-password', [PasswordController::class, 'resetPassword'])->na
 Route::middleware(['auth.kulocker'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'main'])->name('dashboard');
     Route::get('/locker-selection', [LockerController::class, 'selection'])->name('locker.selection');
-    Route::post('/api/proses-sewa', [LockerController::class, 'sewa'])->name('locker.sewa');
+    Route::post('/proses-sewa', [LockerController::class, 'sewa'])->name('locker.sewa');
     Route::match(['get', 'post'], '/proses-sukses', [LockerController::class, 'prosesSukses'])->name('locker.sukses');
     Route::get('/tiket-saya', [LockerController::class, 'tiket'])->name('tiket');
     Route::post('/tiket/selesai', [LockerController::class, 'selesaiSewa'])->name('locker.selesai');
@@ -59,5 +59,5 @@ Route::middleware(['admin.kulocker'])->group(function () {
     Route::get('/admin/update-status', [AdminController::class, 'updateStatus'])->name('admin.update-status');
 });
 
-// Cron Jobs API
-Route::get('/api/cron-pengingat', [LockerController::class, 'cron'])->name('api.cron-pengingat');
+// Cron job (path di luar /api/ agar kompatibel dengan routing Vercel)
+Route::get('/cron-pengingat', [LockerController::class, 'cron'])->name('cron.pengingat');

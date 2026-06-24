@@ -42,7 +42,7 @@ class LockerController extends Controller
         return view('locker.selection', compact('lokasi_terpilih', 'lockers_list'));
     }
 
-    /** POST /api/proses-sewa - Proses sewa loker */
+    /** POST /proses-sewa - Proses sewa loker */
     public function sewa(Request $request)
     {
         date_default_timezone_set('Asia/Makassar');
@@ -204,7 +204,7 @@ class LockerController extends Controller
         return view('locker.riwayat', compact('riwayat_list'));
     }
 
-    /** GET /api/cron-pengingat */
+    /** GET /cron-pengingat */
     public function cron()
     {
         $conn = DbHelper::connection();
